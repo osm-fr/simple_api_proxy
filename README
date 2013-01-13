@@ -32,4 +32,8 @@ note: Your credentials are clear text transmitted to the proxy server
 - Edit the php file and change the API server URL
 
 Use http://your-host/api as the URL to request osm data
-test
+
+== More information ==
+You can also have more information about the live working instance by
+reading :
+http://wiki.openstreetmap.org/wiki/Servers/api.openstreetmap.fr
