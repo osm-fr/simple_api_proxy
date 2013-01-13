@@ -1,0 +1,35 @@
+== What it does ==
+In a few words "why" :
+
+The main API server is applying sanity restrictions in order to limit per
+IP, 
+per area or per elapsed time calls sent to it. This simple proxy is reducing 
+such calls by answering the data request calls itself.
+
+In a few words "how" :
+
+When handeling a request,  any of map, node, way, relation, nodes, ways, 
+relations and capabilities GET calls are converted to the overpass API 
+syntaxe and forwarded to a local (or even could do to a distant) overpass
+API 
+server.
+When handeling any other PUT, POST, DELETE, WHATEVER or GET requests, it 
+forwards the call to the 0.6 API dev server acting as a transparent proxy as 
+much as possible.
+Advantage beeing that no modifications are needed in the client if it
+supports 
+the 0.6 API (beside changing the target URL of course)
+
+note: Your credentials are clear text transmitted to the proxy server
+
+
+== Installation ==
+
+- Create an api directory at the root of your hosting DocumentRoot
+- rename the htaccess file to .htaccess
+- Enable the mod_rewrite in apache
+- Edit the php file and choose your Overpass_API server URL
+- Edit the php file and change the API server URL
+
+Use http://your-host/api as the URL to request osm data
+test

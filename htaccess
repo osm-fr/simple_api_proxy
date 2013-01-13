@@ -1,0 +1,3 @@
+RewriteEngine on
+RewriteRule %{REQUEST_URI} !/simple_api_proxy.php
+Rewriterule (.*) simple_api_proxy.php
