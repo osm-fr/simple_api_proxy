@@ -28,11 +28,13 @@ version 1.0 : 1st release, it should work
 
 // OverpassAPI server config (which URL to access)
 //$config['overpass_interpreter_url']="http://www.overpass-api.de/api/interpreter";
-//$config['overpass_interpreter_url']="http://overpass.osm.rambler.ru/cgi/interpreter";
-$config['overpass_interpreter_url']="http://oapi-fr.openstreetmap.fr/oapi/interpreter";
+$config['overpass_interpreter_url']="http://overpass.osm.rambler.ru/cgi/interpreter";
+//$config['overpass_interpreter_url']="http://api.openstreetmap.fr/oapi/interpreter";
 $config['overpass_interpreter_var_name']="data";
 
-// Set it to true for a temporary switch to a redirect/proxy only used when there is problem localy
+// Set it to true for a temporary switch to a redirect/proxy 
+// You'd better switch to an other overpass api up there before doing that.
+// And only if no suitable overpassAPI exists, then swith this to true
 $config['force_proxy_mode']=false;
 
 // The base URL of the 0.6 API server
