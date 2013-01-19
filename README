@@ -28,8 +28,9 @@ note: Your credentials are clear text transmitted to the proxy server
 - Create an api directory at the root of your hosting DocumentRoot
 - rename the htaccess file to .htaccess
 - Enable the mod_rewrite in apache
-- Edit the php file and choose your Overpass_API server URL
-- Edit the php file and change the API server URL
+- copy the config-sample.php file to config.php
+- Edit the config.php file and choose your Overpass_API server URL
+- and change the API server URL
 
 Use http://your-host/api as the URL to request osm data
 
