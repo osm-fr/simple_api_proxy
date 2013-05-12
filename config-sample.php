@@ -17,7 +17,7 @@ $config['live_osm_url']="http://api06.dev.openstreetmap.org/api";
 
 // Some funky text for the /capabilities call, this is only indicative for the client, the real limit is a timeout in case the request last too long
 // I believe even JOSM don't care about those values, so they are only here for API compliance
-$config['server_string']="osm-fr test proxy to the overpass api";
+$config['server_string']="--give me a name-- api 0.6 proxy tool to the overpass api";
 $config['maximum_served_area']="2";
 $config['maximum_objects']=10000;
 
