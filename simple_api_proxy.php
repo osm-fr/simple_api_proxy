@@ -6,7 +6,7 @@ This is a simple proxy to the overpass API to provide near 0.6 API compatibilty 
 All other not handled calls (POST, PUT, DELETE, GET for history calls, changesets, gpx, etc.) are forwarded to the main
 API at http://api.openstreetmap.org without changes
 
-author : sly sylvain@letuffe.org
+author : sly sylvain () letuffe * org
 Licence is WTFPL
 free software, not warranty, etc.
 
