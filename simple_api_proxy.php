@@ -7,7 +7,7 @@ All other not handled calls (POST, PUT, DELETE, GET for history calls, changeset
 API at http://api.openstreetmap.org without changes
 
 author : sly sylvain@letuffe.org
-Licence is WFTPL
+Licence is WTFPL
 free software, not warranty, etc.
 
  * This program is free software. It comes without any warranty, to
