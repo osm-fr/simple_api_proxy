@@ -1,0 +1,8 @@
+#Pour rediriger les appels ouvertures par JOSM du navigateur sur des urls non gérées ici
+RewriteEngine on
+RewriteCond %{REQUEST_URI} ^/(user|browse|message|assets)/
+RewriteRule (.*) http://www.openstreetmap.org/$1 [R=301]
+
+
+# pour dire aux logiciels comme OpenLayers qu'ils ont le droit d'utiliser ces sercices d'api
+Header set  Access-Control-Allow-Origin *

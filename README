@@ -26,7 +26,7 @@ note: Your credentials are clear text transmitted to the proxy server
 == Installation ==
 
 - Create an api directory at the root of your hosting DocumentRoot
-- rename the htaccess file to .htaccess
+- copy .htaccess-one-level-before to .. (this enable some 301 redirect and Access-Control-Allow-Origin * http header
 - Enable the mod_rewrite in apache
 - copy the config-sample.php file to config.php
 - Edit the config.php file and choose your Overpass_API server URL
