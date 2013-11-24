@@ -277,6 +277,7 @@ function single_object_call($type,$params)
 
 function call_dispatcher($query_string)
 {
+  $r = new stdclass;
   // Check that we have a GET request, if not
   // no need to continue, this proxy doesn't support anything but some of GET calls
   if ($_SERVER['REQUEST_METHOD']!="GET")
@@ -286,7 +287,6 @@ function call_dispatcher($query_string)
     return $r;
   }
     
-  $r = new stdclass;
   $params=explode("?",$query_string);
   if ($params[0]=="map")
     $r=map_call($_GET);
