@@ -21,4 +21,10 @@ $config['server_string']="--give me a name-- api 0.6 proxy tool to the overpass 
 $config['maximum_served_area']="2";
 $config['maximum_objects']=10000;
 
+
+// DEBUG options
+$config['debug']=false;
+$config['debug_file']='/tmp/simple_api_proxy-http-debug.txt';
+
+
 ?>

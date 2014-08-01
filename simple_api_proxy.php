@@ -41,10 +41,14 @@ function forward_to_live_api($uri_without_api_in_case_of_forward)
 	$payload_size="";
   
   $out=tmpfile();
-  $headers=tmpfile();
   
   $ch = curl_init();
-
+  if ($config['debug'])
+  {
+    curl_setopt($ch, CURLOPT_VERBOSE, true);
+    $verbose = fopen($config['debug_file'], 'w+');
+    curl_setopt($ch, CURLOPT_STDERR, $verbose);
+  }
   // User and pass
   if (isset($_SERVER['PHP_AUTH_USER']))
   {
@@ -58,7 +62,6 @@ function forward_to_live_api($uri_without_api_in_case_of_forward)
   curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $_SERVER['REQUEST_METHOD']);
 
   curl_setopt($ch, CURLOPT_FILE, $out);
-  curl_setopt($ch, CURLOPT_WRITEHEADER, $headers);
 
   curl_setopt($ch, CURLOPT_PUT, true);
   curl_setopt($ch, CURLOPT_INFILE,$payload_handler);
@@ -68,15 +71,17 @@ function forward_to_live_api($uri_without_api_in_case_of_forward)
   curl_close($ch);
   
   rewind($out);
-  rewind($headers);
-  while ($header_line=fgets($headers,1024))
-    header($header_line);
+
   $result="";
   while($r=fread($out,4096))
     $result.=$r;
-  print($result);
   fclose($out);
-  fclose($headers);
+  if ($config['debug'])
+  {
+    fwrite($verbose,"\ncontent we'll send to client:\n".$result);
+    fclose($verbose);
+  }
+  return $result;
 }
 function redirect_to_live_api($query)
 {
@@ -335,7 +340,7 @@ $osm_file=call_dispatcher($query);
     else // I thought I could use a 302/303 redirect as well on POST/PUT/DELETE requests but failed, so proxying
       print(forward_to_live_api("/0.6/$query"));
   }
-  else // We can handle this call faster with the overpass API
+  else // We can handle this call locally with the overpass API
 	print($osm_file->xml); 
 }
 ?>
