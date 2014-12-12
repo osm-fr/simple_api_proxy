@@ -13,7 +13,7 @@ $config['force_proxy_mode']=false;
 // The base URL of the 0.6 API server
 // DO THINK TWICE AND MORE THAN DOUBLE CHECK BEFORE UNCOMMENTING THIS :
 //$live_osm_url_without_protocol="api.openstreetmap.org/api" 
-$live_osm_url_without_protocol="http://api06.dev.openstreetmap.org/api";
+$live_osm_url_without_protocol="api06.dev.openstreetmap.org/api";
 
 // Dynamically choose https if we were called with https
 if (empty($_SERVER['HTTPS']))
