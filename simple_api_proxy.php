@@ -58,7 +58,7 @@ function forward_to_live_api($uri_without_api_in_case_of_forward)
   }
 
   // url and method
-  curl_setopt($ch, CURLOPT_URL, $config['live_osm_url']."/".$uri_without_api_in_case_of_forward);
+  curl_setopt($ch, CURLOPT_URL, $config['live_osm_url'].$uri_without_api_in_case_of_forward);
   curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $_SERVER['REQUEST_METHOD']);
 
   curl_setopt($ch, CURLOPT_FILE, $out);
