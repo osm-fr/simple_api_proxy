@@ -41,6 +41,7 @@ function forward_to_live_api($uri_without_api_in_case_of_forward)
 	$payload_size="";
   
   $out=tmpfile();
+  $headers=tmpfile();
   
   $ch = curl_init();
   if ($config['debug'])
@@ -62,12 +63,13 @@ function forward_to_live_api($uri_without_api_in_case_of_forward)
   curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $_SERVER['REQUEST_METHOD']);
 
   curl_setopt($ch, CURLOPT_FILE, $out);
-
+  curl_setopt($ch, CURLOPT_WRITEHEADER, $headers);
   curl_setopt($ch, CURLOPT_PUT, true);
   curl_setopt($ch, CURLOPT_INFILE,$payload_handler);
   curl_setopt($ch, CURLOPT_INFILESIZE, $payload_size);
   curl_setopt($ch, CURLOPT_HTTPHEADER, $client_headers );
   curl_exec($ch);
+  $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE); 
   curl_close($ch);
   
   rewind($out);
@@ -76,9 +78,28 @@ function forward_to_live_api($uri_without_api_in_case_of_forward)
   while($r=fread($out,4096))
     $result.=$r;
   fclose($out);
+  
+  // Return HTTP code returned by server (200 ok, 409 conflict, etc.)
+  http_response_code($http_code);
+  if ($config['debug'])
+    fwrite($verbose,"\nHTTP returned code:$http_code");
+
+  // Get the list of interesting http headers (but not all has it causes problems) to send to the client
+  // Shouldn't JOSM be taking those information from the content of the response ? not headers, acording to API documentation
+  rewind($headers);
+  while ($header_line=fgets($headers,1024))
+  {
+    if (preg_match("/^Error:/",$header_line))
+    {
+      if ($config['debug'])
+        fwrite($verbose,"\n$header_line");
+      header($header_line);
+    }
+  }
+  
   if ($config['debug'])
   {
-    fwrite($verbose,"\ncontent we'll send to client:\n".$result);
+    fwrite($verbose,"\n\ncontent we'll send to client:\n".$result);
     fclose($verbose);
   }
   return $result;
