@@ -217,7 +217,7 @@ function capabilities_call()
 	<area maximum="'.$config['maximum_served_area'].'"/>
 	<waynodes maximum="'.$config['maximum_objects'].'"/>    <tracepoints per_page="5000"/>
 	<waynodes maximum="2000"/>
-	<changesets maximum_elements="50000"/>
+	<changesets maximum_elements="'.$config['maximum_elements'].'"/>
 	<timeout seconds="300"/>
 </api>
 </osm>';
